@@ -73,6 +73,8 @@ gem 'responders', '~> 2.3'
 gem 'autocomplete_zipcode', '~> 0.1.2'
 # CORS
 gem 'rack-cors'
+# MAPS
+gem 'gmaps4rails'
 
 group :production do
   # Postgres SQL
