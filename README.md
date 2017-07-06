@@ -1,22 +1,9 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/1688a37a43984e74905c0522904b65b4)](https://www.codacy.com/app/jonas_9/rails_bootstrap_v2?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=matilhaestudio/rails_bootstrap_v2&amp;utm_campaign=Badge_Grade)
-[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/1688a37a43984e74905c0522904b65b4)](https://www.codacy.com/app/jonas_9/rails_bootstrap_v2?utm_source=github.com&utm_medium=referral&utm_content=matilhaestudio/rails_bootstrap_v2&utm_campaign=Badge_Coverage)
-[![wercker status](https://app.wercker.com/status/7a963aceaba6cd4dc46b2066a2523d8b/s/master "wercker status")](https://app.wercker.com/project/byKey/7a963aceaba6cd4dc46b2066a2523d8b)
+# Maps POC
 
-# Matilha RoR Boilerplate 
-
-Base project to easy server deployment for RoR.
+Poc with Google Maps API
 
 ## Playbook
 ***It's dangerous to go alone! Read [this](https://github.com/matilhaestudio/dev-playbook)!***
-
-## Should provide a base project with:
-- Common gems
-- Base server with:
-	- Admin panel
-	- Login page with devise
-	- User Authorization
-	- Multitenancy
-	- User administration
 
 ## Staging on Heroku
 url: TBD
