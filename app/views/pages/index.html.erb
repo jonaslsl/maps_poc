@@ -175,6 +175,29 @@ var mapStyle = [
 
 handler = Gmaps.build('Google');
 
+var directionsDisplay = new google.maps.DirectionsRenderer();
+var directionsService = new google.maps.DirectionsService();
+
+var temp;
+
+function calcRoute() {
+  var origin      = new google.maps.LatLng(-22.9113541, -43.2591463);
+  var destination = new google.maps.LatLng(-22.9663041, -43.2184963);
+  var request = {
+      origin:      origin,
+      destination: destination,
+      travelMode:  google.maps.TravelMode.WALKING
+  };
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+      temp = response;
+    }
+  });
+}
+
+calcRoute();
+
 handler.buildMap(
 	{ internal: {id: 'map'},
 		provider: {
@@ -185,37 +208,51 @@ handler.buildMap(
     }
 	}, function(){
 
-	var markers = handler.addMarkers([
-    { lat: -22.9113541, lng: -43.2591463},
-    { lat: -22.9223661, lng: -43.2691563},
-    { lat: -22.9333741, lng: -43.2491663},
-    { lat: -22.9443841, lng: -43.2391763},
-    { lat: -22.9553941, lng: -43.2291863},
-    { lat: -22.9663041, lng: -43.2191963},
-    { lat: -22.9113541, lng: -43.2581463},
-    { lat: -22.9223661, lng: -43.2671563},
-    { lat: -22.9333741, lng: -43.2461663},
-    { lat: -22.9443841, lng: -43.2351763},
-    { lat: -22.9553941, lng: -43.2241863},
-    { lat: -22.9663041, lng: -43.2121963},
-    { lat: -22.9113541, lng: -43.2521463},
-    { lat: -22.9223661, lng: -43.2651563},
-    { lat: -22.9333741, lng: -43.2461663},
-    { lat: -22.9443841, lng: -43.2361763},
-    { lat: -22.9553941, lng: -43.22951863},
-    { lat: -22.9663041, lng: -43.2184963}
-  ]);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-  	
-  // var marker = handler.addMarkers([{
-  //   	lat: -22.9103541,
-  //     lng: -43.5891363
-  // }]);
-  handler.map.centerOn(marker);
-	//handler.fitMapToBounds();
-  
+        var a = [
+            // { lat: -22.9113541, lng: -43.2591463},
+            // { lat: -22.9223661, lng: -43.2691563},
+            // { lat: -22.9333741, lng: -43.2491663},
+            // { lat: -22.9443841, lng: -43.2391763},
+            // { lat: -22.9553941, lng: -43.2291863},
+            // { lat: -22.9663041, lng: -43.2191963},
+            // { lat: -22.9113541, lng: -43.2581463},
+            // { lat: -22.9223661, lng: -43.2671563},
+            // { lat: -22.9333741, lng: -43.2461663},
+            // { lat: -22.9443841, lng: -43.2351763},
+            // { lat: -22.9553941, lng: -43.2241863},
+            // { lat: -22.9663041, lng: -43.2121963},
+            // { lat: -22.9113541, lng: -43.2521463},
+            // { lat: -22.9223661, lng: -43.2651563},
+            // { lat: -22.9333741, lng: -43.2461663},
+            // { lat: -22.9443841, lng: -43.2361763},
+            // { lat: -22.9553941, lng: -43.22951863},
+            // { lat: -22.9663041, lng: -43.2184963}
+          ];
+    	
 
-});
+      setTimeout(function(){
+        for(i = 1; i < 35; i++){
+            //response.routes[0].legs[0].steps[0].start_location.lat(0)
+            a.push({ lat: temp.routes[0].legs[0].steps[i].start_location.lat(0), lng: temp.routes[0].legs[0].steps[i].start_location.lng(0) });
+            
+        }
+        var markers = handler.addMarkers(a);
+            handler.bounds.extendWith(markers);
+            handler.fitMapToBounds();
+            //directionsDisplay.setMap(handler.getMap());
+      }, 5000);
+
+      
+
+      
+      
+      // var marker = handler.addMarkers([{
+      //   	lat: -22.9103541,
+      //     lng: -43.5891363
+      // }]);
+      //handler.map.centerOn(marker);
+    	//handler.fitMapToBounds();
+
+    });
 
 </script>
