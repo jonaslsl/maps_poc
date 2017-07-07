@@ -293,37 +293,50 @@ handler.buildMap(
 	}, 
     function(){
         
-            setInterval(function(){
-                for(l = 0; l < locations.length-1; l++){
-                    function calcRoute() {
-                        var origin      = new google.maps.LatLng(locations[l].lat, locations[l].lng);
-                        var destination = new google.maps.LatLng(locations[l+1].lat, locations[l+1].lng);
-                        var request = {
-                          origin:      origin,
-                          destination: destination,
-                          travelMode:  google.maps.TravelMode.WALKING
-                        };
-
-                        setTimeout(function(){
-                            directionsService.route(request, function(response, status) {
-                                if (status == google.maps.DirectionsStatus.OK) {
-                                    directionsDisplay.setDirections(response);
-                                    for(i = 0; i < response.routes[0].legs[0].steps.length; i++){
-                                        a.push({
-                                                lat: response.routes[0].legs[0].steps[i].start_location.lat(0),
-                                                lng: response.routes[0].legs[0].steps[i].start_location.lng(0) 
-                                            });
+            //setInterval(function(){
+                //for(l = 0; l < 30; l++){
+                    var l = 0;
+                    var i = setInterval(function(){
+                        function calcRoute() {
+                            //setTimeout(function(){
+                                var origin      = new google.maps.LatLng(locations[l].lat, locations[l].lng);
+                                var destination = new google.maps.LatLng(locations[l+1].lat, locations[l+1].lng);
+                                var request = {
+                                  origin:      origin,
+                                  destination: destination,
+                                  travelMode:  google.maps.TravelMode.WALKING
+                                };
+                                directionsService.route(request, function(response, status) {
+                                    if (status == google.maps.DirectionsStatus.OK) {
+                                        directionsDisplay.setDirections(response);
+                                        for(i = 0; i < response.routes[0].legs[0].steps.length; i++){
+                                            a.push({
+                                                    lat: response.routes[0].legs[0].steps[i].start_location.lat(0),
+                                                    lng: response.routes[0].legs[0].steps[i].start_location.lng(0) 
+                                                });
+                                            console.log(response.routes[0].legs[0].steps[i].start_location.lat(0));
+                                            console.log(response.routes[0].legs[0].steps[i].start_location.lng(0));
+                                        }
+                                        l++;
+                                        
+                                        //delete i;
+                                        
+                                        // markers = handler.addMarkers(a);
+                                        // handler.bounds.extendWith(markers);
+                                        // handler.fitMapToBounds();
                                     }
-                                    markers = handler.addMarkers(a);
-                                    handler.bounds.extendWith(markers);
-                                    handler.fitMapToBounds();
-                                }
-                              });
-                        });
-                    }     
-                    calcRoute();
-                }
-            },3000);
+                                  });
+                            //},1000);
+                        }
+                        //setTimeout(function(){     
+                            if(l < 99) 
+                            calcRoute();
+                            //l++;
+                        //},l*1000);
+                        
+                    }, 500);
+                //}
+            //},3000);
         
     }
 );
