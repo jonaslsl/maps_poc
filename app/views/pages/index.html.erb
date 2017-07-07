@@ -296,11 +296,12 @@ handler.buildMap(
             //setInterval(function(){
                 //for(l = 0; l < 30; l++){
                     var l = 0;
+                    var end = 99;
                     var i = setInterval(function(){
                         function calcRoute() {
                             //setTimeout(function(){
                                 var origin      = new google.maps.LatLng(locations[l].lat, locations[l].lng);
-                                var destination = new google.maps.LatLng(locations[l+1].lat, locations[l+1].lng);
+                                var destination = new google.maps.LatLng(locations[end].lat, locations[end].lng);
                                 var request = {
                                   origin:      origin,
                                   destination: destination,
@@ -318,9 +319,8 @@ handler.buildMap(
                                             console.log(response.routes[0].legs[0].steps[i].start_location.lng(0));
                                         }
                                         l++;
-                                        
+                                        end--;
                                         //delete i;
-                                        
                                         // markers = handler.addMarkers(a);
                                         // handler.bounds.extendWith(markers);
                                         // handler.fitMapToBounds();
