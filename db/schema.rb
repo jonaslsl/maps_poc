@@ -10,7 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170613211627) do
+ActiveRecord::Schema.define(version: 20170707194312) do
+
+  create_table "incidents", force: :cascade do |t|
+    t.date     "date"
+    t.string   "gender"
+    t.integer  "age"
+    t.string   "veicle"
+    t.string   "state"
+    t.float    "value"
+    t.string   "lat"
+    t.string   "lng"
+    t.string   "events"
+    t.string   "climate"
+    t.string   "speed"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "samples", force: :cascade do |t|
     t.string   "first_name"
